@@ -1,0 +1,177 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body style="width: 100%; position: relative;">
+
+  <img src="images/worm.png" alt="" style="position: absolute; top: 0; right: 0; width: 180px;" />
+
+  <!-- Header -->
+  <header style="position: relative;">
+    <table>
+      <tr>
+        <td style="text-align: left; vertical-align: top;">
+          <img src="images/airwallex-logo.png" style="width: 200px; position: relative; top: 12px;"/>
+        </td>
+        <td style="text-align: right; vertical-align: top;">
+          <div style="font-size: 28px; font-weight: 700;">Payment Notice</div>
+          <div style="color: #737b80">Airwallex ID: <span style="color: #FF005B; font-weight: 700;" th:text="${data.payment.shortReferenceId}">[shortRef]</span></div>
+        </td>
+      </tr>
+    </table>
+  </header>
+
+  <!-- Date -->
+  <div class="content" style="position: relative;">
+    Date of issue: <span th:text="${data.letterDate}" style="font-weight: 700;">[letterDate]</span>
+
+    <!-- Heading -->
+    <div class="heading" style="margin-top: 64px; font-weight: 700; font-size: 18px; text-transform: uppercase;">
+      <span th:text="${data.payment.shortReferenceId}" >[shortRef]</span>
+      (<span th:text="${data.payment.paymentCurrency}">[paymentCurrency]</span>),
+      <span th:text="${data.airwallexCompanyName}">[airwallexCompanyName]</span>
+    </div>
+
+    <table style="margin-top: 32px;">
+      <tr>
+        <td style="width: 48%; vertical-align: top;">
+
+          <!-- Entry info -->
+          <div class="section-heading" style="color: #FF005B;">Entry information</div>
+          <table>
+            <tr>
+              <td class="data-label">Account</td>
+              <td class="data-value"></td>
+            </tr>
+            <tr>
+              <td class="data-label">Entry amount</td>
+              <td class="data-value" th:text="${data.payment.paymentCurrency + ' -' + data.payment.amountBeneficiaryReceives}">Entry amount</td>
+            </tr>
+            <tr>
+              <td class="data-label">Original amount</td>
+              <td class="data-value" th:text="${data.payment.paymentCurrency + ' ' + data.payment.amountBeneficiaryReceives}">Original amount</td>
+            </tr>
+            <tr>
+              <td class="data-label">Exchange rate</td>
+              <td class="data-value"></td>
+            </tr>
+            <tr>
+              <td class="data-label">Remitted amount</td>
+              <td class="data-value" th:text="${data.payment.paymentCurrency + ' ' + data.payment.amountBeneficiaryReceives}">Remitted amount</td>
+            </tr>
+            <tr>
+              <td class="data-label">Entry date</td>
+              <td class="data-value" th:text="${data.payment.lastUpdatedAt}">Entry date</td>
+            </tr>
+            <tr>
+              <td class="data-label">Value date</td>
+              <td class="data-value" th:text="${data.payment.lastUpdatedAt}">Value date</td>
+            </tr>
+            <tr>
+              <td class="data-label">Payment status</td>
+              <td class="data-value" th:text="${data.payment.status}">Payment status</td>
+            </tr>
+            <tr>
+              <td class="data-label">Payment method</td>
+              <td class="data-value" th:text="${data.payment.paymentMethod}">Payment method</td>
+            </tr>
+            <tr>
+              <td class="data-label">Transaction reference</td>
+              <td class="data-value" th:text="${data.payment.shortReferenceId}">Transaction reference</td>
+            </tr>
+            <tr>
+              <td class="data-label">Payment reference</td>
+              <td class="data-value" th:text="${data.payment.reference}">Payment reference</td>
+              <!-- <td class="data-value">Xuesheng Mingzi Invoice Number IN123456 Student ID 12345678901234567890 DOB 2000 01 01</td> -->
+            </tr>
+            <tr>
+              <td class="data-label">Remitter country</td>
+              <td class="data-value" th:text="${data.payer.country}">Remitter country</td>
+            </tr>
+            <tr>
+              <td class="data-label">Counter account</td>
+              <td class="data-value"></td>
+            </tr>
+            <tr>
+              <td class="data-label">Country of account</td>
+              <td class="data-value" th:text="${data.payer.country}">Country of account</td>
+            </tr>
+          </table>
+
+        </td>
+
+        <td style="width: 4%;"><!-- spacer --></td>
+
+        <td style="width: 48%; vertical-align: top;">
+
+          <!-- Payer info -->
+          <div class="section-heading" style="color: #FD8D47;">Payer information</div>
+          <table>
+            <tr>
+              <td class="data-label">Payer name</td>
+              <td class="data-value" th:text="${data.payer.displayName}">Payer name</td>
+            </tr>
+            <tr>
+              <td class="data-label">Incorporation number</td>
+              <td class="data-value" th:text="${data.payer.businessRegistrationNumber}">Incorporation number</td>
+            </tr>
+            <tr>
+              <td class="data-label">Address</td>
+              <td class="data-value" th:text="${data.payer.address}">Address</td>
+            </tr>
+            <tr>
+              <td class="data-label">Account number</td>
+              <td class="data-value"></td>
+            </tr>
+          </table>
+
+          <!-- Beneficiary info -->
+          <div class="section-heading" style="color: #FD8D47; margin-top: 32px;">Beneficiary information</div>
+          <table>
+            <tr th:if="${data.beneficiary.accountName != null}">
+              <td class="data-label">Beneficiary name</td>
+              <td class="data-value" th:text="${data.beneficiary.accountName}">Beneficiary name</td>
+            </tr>
+            <tr th:if="${data.beneficiary.accountName != null}">
+              <td class="data-label">Bank account holder name</td>
+              <td class="data-value" th:text="${data.beneficiary.accountName}">Bank account holder name</td>
+            </tr>
+            <tr th:if="${data.beneficiary.accountNumber != null}">
+              <td class="data-label">Beneficiary account number</td>
+              <td class="data-value" th:text="${data.beneficiary.accountNumber}">Beneficiary account number</td>
+            </tr>
+            <tr th:if="${data.beneficiary.bankName != null}">
+              <td class="data-label">Bank name</td>
+              <td class="data-value" th:text="${data.beneficiary.bankName}">Bank name</td>
+            </tr>
+            <tr th:if="${data.beneficiary.swiftCode != null}">
+              <td class="data-label">SWIFT code</td>
+              <td class="data-value" th:text="${data.beneficiary.swiftCode}">SWIFT code</td>
+            </tr>
+            <tr th:if="${data.beneficiary.iban != null}">
+              <td class="data-label">IBAN</td>
+              <td class="data-value" th:text="${data.beneficiary.iban}">IBAN</td>
+            </tr>
+            <tr th:if="${data.beneficiary.accountRoutingValue1 != null}">
+              <td class="data-label" th:text="${data.beneficiary.accountRoutingType1}">accountRoutingType1</td>
+              <td class="data-value" th:text="${data.beneficiary.accountRoutingValue1}">accountRoutingValue1</td>
+            </tr>
+            <tr th:if="${data.beneficiary.accountRoutingValue2 != null}">
+              <td class="data-label" th:text="${data.beneficiary.accountRoutingType2}">accountRoutingType2</td>
+              <td class="data-value" th:text="${data.beneficiary.accountRoutingValue2}">accountRoutingValue2</td>
+            </tr>
+          </table>
+
+          <!-- Seal -->
+          <img th:if="${data.shouldShowSeal} == true" src="images/axchop40.png" alt="" style="position: relative; top: -40px; left: -55px; width: 175px; transform: rotate(-10deg);" />
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+  <img src="images/footer.png" alt="" class="footer" />
+
+</body>
+
+</html>

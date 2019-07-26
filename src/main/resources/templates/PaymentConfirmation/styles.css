@@ -1,0 +1,115 @@
+/*
+ * OpenHtmlToPdf Page Settings
+ */
+@page {
+  margin: 0;
+  size: A4 portrait;
+}
+
+/*
+ * Global
+ */
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0 auto;
+  font-family: DIN, Noto, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #2A2A2A;
+  word-wrap: break-word;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td { 
+  padding: 0;
+}
+
+/* Paper guide for browser */
+@media (-webkit-min-device-pixel-ratio: 0) {
+  body {
+    font-family: 'FF DIN Pro';
+    max-width: 830px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    transform: translateY(-25%);
+  }
+}
+
+/*
+ * Header
+ */
+header {
+  display: block;
+  padding: 64px 80px 24px;
+}
+
+/*
+ * Content
+ */
+.content {
+  padding: 0 80px 100px;
+}
+
+.section-heading {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.data-label, .data-value {
+  vertical-align: top;
+  width: 50%;
+  padding: 8px 8px 0 0;
+}
+.data-value {
+  font-weight: 700;
+}
+
+/*
+ * Footer
+ */
+.footer {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+@media (-webkit-min-device-pixel-ratio: 0) {
+  .footer {
+    position: static;
+  }
+
+  body > img {
+    transform: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
